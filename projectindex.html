@@ -12,7 +12,7 @@
         <header class="head">
             <h2 class="logo">Distance Calculator</h2>
             <nav class="navigation">
-                <a href="#">About</a>
+                <a href="projectabout.html">About</a>
                 <button id="login" class="btnlogin-popup">login</button>
             </nav>
         </header>
@@ -46,7 +46,7 @@
                     </div>
                     <button onclick="loginsubmit(event)" id="log" type="button" style="color:azure;background-color:#162938;" class="btn">login</button>
                     <div class="login-register">
-                        <p>Dont have an account?<a href="#" class="register-link">Register</a></p>
+                        <p>Dont have an account?<a id="register1" href="#" class="register-link">Register</a></p>
                     </div>
                 </form>
             </div>
@@ -57,22 +57,22 @@
                         <span class="icon">
                             <ion-icon name="lock-closed"></ion-icon>
                         </span>
-                        <input type="email" required>
+                        <input id="remail" type="email" required>
                         <label>Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon">
                             <ion-icon name="lock-closed"></ion-icon>
                         </span>
-                        <input type="passward" required>
+                        <input id="rpassword" type="passward" required>
                         <label>Password</label>
                     </div>
                     <div class="remember-forgot">
                         <label><input type="checkbox">I agree to the terms & conditions</label>
                     </div>
-                    <button onclick="registersubmit()" type="button" style="color:azure;background-color:#162938;" class="btn">register</button>
+                    <button id="register2" onclick="registersubmit()" type="button" style="color:azure;background-color:#162938;" class="btn">register</button>
                     <div class="login-register">
-                        <p>Already have an account?<a href="#" class="login-link">login</a></p>
+                        <p>Already have an account?<a id="log2" href="#" class="login-link">login</a></p>
                     </div>
                 </form>
             </div>
@@ -92,8 +92,8 @@
                 }
             }
             function registersubmit(){
-                var email=document.getElementById('email').value;
-                var password=document.getElementById('password').value;
+                var email=document.getElementById('remail').value;
+                var password=document.getElementById('rpassword').value;
                 if (email=='akshi@gmail.com' && password==12345){
                     alert('login successfull');
                 }
