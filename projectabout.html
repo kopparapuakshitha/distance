@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distance Calculator</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .head1{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 100px;
+    display:flex;
+    justify-content:space-between;
+    text-align: center;
+    z-index:99;
+    }
+    body{
+    background:transparent;
+    align-items:center;
+    display:flex;
+    justify-content:center;
+    background:url('roadmap.jpg') no-repeat;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(3px); 
+    }
+    h1{
+        color:#fff;
+    }
+    h2{
+        color:brown;
+        font-size:30px;
+    }
+    .logo1{ 
+    font-size:2em;
+    color:#fff;
+    user-select:none;
+    }
+    .navigation1 a{
+    position:relative;
+    font-size:1.6em;
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    margin-left:30px;
+    }
+    .navigation1{
+    justify-content:space-between;
+    }
+    .navigation1 a::after{
+    content:'';
+    position: absolute;
+    left:0;
+    bottom:-6px;
+    width:100%;
+    height:3px;
+    background:#fff;
+    border-radius:5px;
+    transform-origin:right;
+    transform:scalex(0);
+    transition:transform .5s;
+    }
+  </style>
+</head>
+<body>
+    <header class="head1">
+        <h2 class="logo1">Distance Calculator</h2>
+        <nav class="navigation1">
+            <a href="projectindex.html" id="home">Home</a>
+        </nav>
+    </header>
+      <div class="wrap">
+      <h2>
+        "Distance calculation" is a web application that calculates the distance between two locations using the Google Distance Matrix API. 
+        The purpose of this project is to provide users with a quick and accurate way to determine the distance between any two points on the Earth's surface. 
+        Users can input two locations, and the application will fetch the distance information from the Google Distance Matrix API and display it in various units, such as kilometers, miles and time​
+      </h2>
+        </div>
+</body>
