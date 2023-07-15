@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Distance Calculator</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="head">
+            <h2 class="logo">Distance Calculator</h2>
+            <nav class="navigation">
+                <a href="#">About</a>
+                <button id="login" class="btnlogin-popup">login</button>
+            </nav>
+        </header>
+        <div class="wrapper">
+            <span class="icon-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </span>
+            <div class="form-box login">
+                <h2>login</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock-closed"></ion-icon>
+                        </span>
+                        <input type="email" id="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock-closed"></ion-icon>
+                        </span>
+                        <input type="passward"  id="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">Remember me</label>
+                        <a href="#">forgot password?</a>
+
+                    </div>
+                    <button onclick="loginsubmit(event)" id="log" type="button" style="color:azure;background-color:#162938;" class="btn">login</button>
+                    <div class="login-register">
+                        <p>Dont have an account?<a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box register">
+                <h2>Registration</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock-closed"></ion-icon>
+                        </span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon">
+                            <ion-icon name="lock-closed"></ion-icon>
+                        </span>
+                        <input type="passward" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">I agree to the terms & conditions</label>
+                    </div>
+                    <button onclick="registersubmit()" type="button" style="color:azure;background-color:#162938;" class="btn">register</button>
+                    <div class="login-register">
+                        <p>Already have an account?<a href="#" class="login-link">login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="script.js"></script>
+        <script>
+            function loginsubmit(event){
+                var email=document.getElementById('email').value;
+                var password=document.getElementById('password').value;
+                event.preventDefault();
+                if (email=='akshi@gmail.com' && password==12345){
+                    alert('login successfull');
+                    window.location.href="loginpage.html";
+                }
+                else{
+                    alert('invalid infornation');
+                }
+            }
+            function registersubmit(){
+                var email=document.getElementById('email').value;
+                var password=document.getElementById('password').value;
+                if (email=='akshi@gmail.com' && password==12345){
+                    alert('login successfull');
+                }
+                else{
+                    alert('invalid infornation');
+                }
+                
+            }
+        </script>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Google Maps API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxACrlXZI3XbPbp-lcKjbfC7j8EONEu4Q&libraries=places"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

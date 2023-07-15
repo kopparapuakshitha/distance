@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distance Calculator</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <style>
+    .mapping{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+    body{
+    align-items:center;
+    display:flex;
+    justify-content:center;
+    background:url('roadmap.jpg') no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+    background-position: center;
+    }
+    .mapping button {
+      padding: 10px 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin-top: 110px;
+      
+    }
+    #map{
+      height:400px;
+      width:100%;
+      margin-bottom:20px;
+      
+    }
+    h1{
+        color:#fff;
+    }
+    #distance-form{
+      max-width:800px;
+      position:relative;
+      margin-top: 30px;
+    }
+    .custom-button{
+      width:80%;
+      height:45px;
+      background:#162938;
+      border:none;
+      outline:none;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:1em;
+      color:#fff;
+      font-weight:500;
+    }
+    .head1{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 100px;
+    display:flex;
+    justify-content:space-between;
+    text-align: center;
+    z-index:99;
+    }
+    .logo1{ 
+    font-size:2em;
+    color:#fff;
+    user-select:none;
+    }
+    .navigation1 a{
+    position:relative;
+    font-size:1.1em;
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    margin-left:30px;
+    }
+    .navigation1{
+    justify-content:space-between;
+    }
+    .navigation1 a::after{
+    content:'';
+    position: absolute;
+    left:0;
+    bottom:-6px;
+    width:100%;
+    height:3px;
+    background:#fff;
+    border-radius:5px;
+    transform-origin:right;
+    transform:scalex(0);
+    transition:transform .5s;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <header class="head1">
+    <h2 class="logo1">Distance Calculator</h2>
+    <nav class="navigation1">
+        <a href="index.html" id="home">Home</a>
+        <a href="index.html">logout</a>
+    </nav>
+  </header>
+  <div class="container">
+    <form id="distance-form">
+      <div class="form-group">
+        <!-- map icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+        </svg>
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" class="form-control" placeholder="Enter origin location" required>
+      
+      </div>
+      <div class="form-group">
+        <!-- map icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+        </svg>
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" class="form-control" placeholder="Enter destination location" required>
+    
+      </div>
+      <div style="text-align:center;">
+        <button id="find"class="custom-button">
+          <span class="button-text" onclick="showMap()">submit</span>
+        </button>
+      </div><br>
+      <div style="text-align:center;" id="distance-result"></div>
+      <div class="container" id="map"></div><br>
+    </form>
+  </div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxACrlXZI3XbPbp-lcKjbfC7j8EONEu4Q&libraries=places"></script>
+  <script>
+    let input1=document.getElementById('origin')
+    let input2=document.getElementById('destination')
+    let automcomplete1=new google.maps.places.Autocomplete(input1)
+    let automcomplete2=new google.maps.places.Autocomplete(input2)
+    // Function to calculate distance using Google Maps API
+    function calculateDistance() {
+    var origin = document.getElementById('origin').value;
+    var destination = document.getElementById('destination').value;
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations: [destination],
+        travelMode: 'DRIVING',
+      },
+      function (response, status) {
+        if (status === 'OK') {
+          var distance = response.rows[0].elements[0].distance.text;
+          var duration = response.rows[0].elements[0].duration.text;
+          var result = `Distance: ${distance}<br>Duration: ${duration}`;
+
+          document.getElementById('distance-result').innerHTML = result;
+
+          // Display the map with the route and places
+          displayMap(origin, destination);
+        } else {
+          document.getElementById('distance-result').innerHTML = 'Error: ' + status;
+        }
+      }
+    );
+    }
+
+  // Function to display the map with route and places
+  function showMap() {
+      var origin = document.getElementById("origin").value;
+      var destination = document.getElementById("destination").value;
+
+      // Replace 'YOUR_API_KEY' with your actual API key
+      var apiKey = 'AIzaSyCxACrlXZI3XbPbp-lcKjbfC7j8EONEu4Q';
+
+      // Create a new map instance
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: { lat: 0, lng: 0 }
+      });
+
+      // Create a new directions service instance
+      var directionsService = new google.maps.DirectionsService();
+
+      // Create a new directions renderer instance
+      var directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map
+      });
+
+      // Create a directions request object
+      var request = {
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+
+      // Send the directions request to the directions service
+      directionsService.route(request, function(response, status) {
+        if (status === 'OK') {
+          // Display the route on the map
+          directionsRenderer.setDirections(response);
+        } else {
+          alert('Please enter locaions');
+        }
+      });
+    }
+  // Handle form submission
+  document.getElementById('distance-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    calculateDistance();
+  });
+  </script>
+</body>
+</html>
