@@ -83,22 +83,25 @@
                 var email=document.getElementById('email').value;
                 var password=document.getElementById('password').value;
                 event.preventDefault();
-                if (email=='akshi@gmail.com' && password==12345){
+                var emailRegex = /\S+@\S+\.\S+/;
+                if(email.match(emailRegex)){
                     alert('login successfull');
                     window.location.href="loginpage.html";
                 }
                 else{
-                    alert('invalid infornation');
+                    alert('invalid email format..please enter a valid email');
                 }
             }
             function registersubmit(){
                 var email=document.getElementById('remail').value;
                 var password=document.getElementById('rpassword').value;
-                if (email=='akshi@gmail.com' && password==12345){
+                var emailRegex = /\S+@\S+\.\S+/;
+                if(email.match(emailRegex)){
                     alert('login successfull');
+                    
                 }
                 else{
-                    alert('invalid infornation');
+                    alert('invalid email format..please enter a valid email');
                 }
                 
             }
