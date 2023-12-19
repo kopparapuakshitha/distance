@@ -1,0 +1,65 @@
+3. Jenkins Link:
+
+https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/#downloading-and-installing-jenkins
+
+sudo cat -----------> for password
+
+sudo yum install git -y
+
+https://github.com/GeorgeBaidooJr9/hello-world.git
+
+
+
+4.Maven
+
+sudo su -
+cd /opt/
+ll
+https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+ll
+tar -xzvf apache-maven-3.9.6-bin.tar.gz
+ll
+mv apache-maven-3.9.6 maven
+cd maven
+ll
+cd bin
+ll
+./mvn -v
+cd ~
+pwd
+vi .bash_profile
+       press i
+          M2_HOME=/opt/maven 
+          M2=/opt/maven/bin
+          JAVA_HOME=/usr/lib/jvm/java-17-amazon-correctto.x86-64
+          PATH=$PATH$HOME/bin:$JAVA_HOME:$M2_HOME:$M2
+          export PATH
+                          press esc -->:-->x
+exit
+sudo su -
+mvn -v
+
+
+
+
+
+
+
+
+6.Docker
+      https://enlear.academy/deploying-a-full-stack-application-on-aws-ec2-with-docker-a-step-by-step-guide-86363d99a5ff
+
+
+
+sudo yum install git -y
+sudo yum install docker -y
+sudo usermod -aG docker ec2-user
+sudo service docker start
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
+mkdir temp
+cd temp
+git clone https://github.com/madhurajayashanka/docker-mysql-nodejs-reactjs-app.git
+cd docker-mysql-nodejs-reactjs-app
+docker-compose up --build
